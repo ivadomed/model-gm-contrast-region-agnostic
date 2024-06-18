@@ -1,6 +1,9 @@
 # Automatic Segmentation of Spinal Cord Gray Matter Across Multiple MRI Contrasts and Regions
 Repo for train a model contrast and region agnostic for segment the spinal cord gray matter
 
+![GMseg](https://github.com/ivadomed/model-gm-contrast-region-agnostic/assets/77469192/f5625a0d-396d-4276-b55e-f4f198214719)
+
+
 1. Main Dependencies
 
 SCT 6.3
