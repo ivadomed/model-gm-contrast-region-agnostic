@@ -13,6 +13,7 @@ SCT 6.3
 | gmseg-challenge-2016  |   |   |  |  |    |
 | marseille-t2s-template  |   |   |  |  |    |   
 | lumbar-vanderbilt  | 3T T2Star  |  |  |  |    |   
-| ucsf-gm-psir  | 3T PSIR  | 0,78  ×  0,78  |  |  |    |   
+| exvivo-spinal-cord  |   |   |  |  |    |   
+| ucsf-gm-psir  | 3T PSIR  | 0,78  ×  0,78  | HC | C2-3 | 110   |   
 |   |   |   |  |  |    |   
 |   |   |   |  |  |    |   
