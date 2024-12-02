@@ -9,9 +9,7 @@ datasets=(
     "/home/GRAMES.POLYMTL.CA/nilaia/data_nvme_nilaia/gm_segmentation/inspired/acq-cspine_T2star label-GM_seg 700 0.8 0.2"
     "/home/GRAMES.POLYMTL.CA/nilaia/data_nvme_nilaia/gm_segmentation/dcm-brno/T1w gmseg 700 0.8 0.2"
     "/home/GRAMES.POLYMTL.CA/nilaia/data_nvme_nilaia/gm_segmentation/sct-testing-large/T2star gmseg-manual 702 0.0 1.0"
-    "/DATA_CNS/TEAM/VIRGINIE/nilser/Bids-HC/ run-1_T1map run-2_T1map label-graymatter-dl-gt 700 0.8 0.2"
-    "/home/nlaines/DEV/Data_stage_Deep_Nilser/Bids_HC/7T-T2star label-GM_seg 700 0.8 0.2"
-)
+	)
 
 # Base path for output directory
 path_out="../../nnUNet_raw/"
