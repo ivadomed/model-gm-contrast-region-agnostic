@@ -1,3 +1,21 @@
+"""
+
+Script got synthesize images with visible GM after PAM50 registration
+
+Details of flags: 
+
+-i : Path to input T2w image NIfTI file (i.e. ax-T2w.nii.gz)
+-s : Path to GM soft mask (i.e. template/PAM50_gm.nii.gz)
+-o : Path to output file (i.e. ax-T2w-synth.nii.gz)
+
+Usage:
+    python synth_gm_data.py -i ax-T2w.nii.gz  -s  template/PAM50_gm.nii.gz  -o  ax-T2w-synth.nii.gz
+
+Authors: Nilser Laines Medina
+Date: 2024-12-16
+
+"""
+
 import nibabel as nib
 import numpy as np
 import argparse
