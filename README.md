@@ -1,34 +1,53 @@
 # Automatic Segmentation of Spinal Cord Gray Matter Across Multiple MRI Contrasts and Regions
-Repo for train a model contrast and region agnostic for segment the spinal cord gray matter
+
+Repository for contrast and region agnostic spinal cord Gray Matter (GM) segmentation project using nnUnetV2.
+
+This repo contains the code for data preprocessing, training and running inferences mainly based on [Spinal Cord Toolbox](https://spinalcordtoolbox.com/stable/index.html) and [nnUnet](https://github.com/MIC-DKFZ/nnUNet).
+
 
 ![GMseg](https://github.com/ivadomed/model-gm-contrast-region-agnostic/assets/77469192/f5625a0d-396d-4276-b55e-f4f198214719)
 
 
-1. Main Dependencies
+# 1. Main Dependencies
 
-SCT 6.3
+- [![SCT](https://img.shields.io/badge/SCT-6.5-green)](https://github.com/spinalcordtoolbox/spinalcordtoolbox/releases/tag/6.5)
 
-2. Dataset Summary
+- Python 3.10
+
+# 2. Dataset Summary
    
-| Dataset                 | Sequence         | GT      | Category         | Region                     | In-plane res. (mm²)     | N. Subjects | Ax-slices per subject | ~ Total 2D slic |
-|-------------------------|------------------|---------|------------------|----------------------------|--------------------------|-------------|------------------------|------------------|
-| marseille-7T-T2star    | 7T T2star        | Manual  | HC/MS/ALS        | Cervical                   | 0.18 x 0.18<br>0.22x0.22 | 75          | 10                     | 750              | 
-| marseille-7T-T1map     | 7T MP2RAGE       | Manual  | HC/MS/ALS/AMS    | Cervical (2 runs)          | 0.3x0.3                 | 91          | 10                     | 910              | 
-| marseille-t2s-template | 3T T2star        | Manual  | HC               | Cervical, thoracic, lumbar | 0.47x0.47               | 25          | 15                     | 375              | 
-| inspired               | 3T T2star        | Manual  | HC/DCM/SCI       | Cervical                   | 0.5 × 0.5               | 61          | 12                     | 732              | 
-| gmseg-challenge-2016   | 3T T2star        | Manual  | HC               | Cervical                   | 0.6 × 0.6               | 40          | 12                     | 480              | 
-| lumbar-vanderbilt      | 3T T2star        | Manual  | HC               | Lumbar                     | 0.3 × 0.3               | 53          | 12                     | 636              | 
-| dcm-brno               | 3T T1w ax        | Manual  | HC               | Cervical                   | 0.35 × 0.35             | 65          | 30                     | 1950             | 
-| hc-ucsf-psir           | 3T PSIR          | Manual  | HC               | C3                         | 0.8x0.8                 | 110         | 1                      | 110              | 
-| sct-testing-large      | 3T T2star        | Manual  | HC, MS           | C1-T12                     | 0.5 × 0.5               | 333         | 10                     | 3750             | 
-|                        | 3T MTon_MTR      | Manual  | HC, MS           | C1-L5                      | 0.5 × 0.5               | 42          | 10                     | 420              | 
-| exvivo-spinal-cord     | 7T T2star        | Manual  | HC               | C3-L5                      | 0.1 × 0.1               | 1           | 4676                   | 4676             | 
-|                        | 7T DTI FA        | Manual  | HC               | C3-L5                      | 0.1 × 0.1               | 1           | 4676                   | 4676             | 
-|                        | 9.4T T2w         | Manual  | HC               | C1-T12                     | 0.05 × 0.05             | 1           | 1919                   | 1919             | 
-| vanderbilt-7t-swi      | 7T T2star, SWI   | NO GT   | HC, MS           | Cervical                   | 0.3 × 0.3               | 17          | 10                     | 170              | 
-| levin-stroke           | 3T T2star        | NO GT   | Stroke           | Cervical                   | 0.5 × 0.5               | 12          | 12                     | 144              | 
-| philadelphi-pediatric  | 3T T2star        | NO GT   | Pediatric        | Cervical                   | 0.5 × 0.5               | 24          | 10                     | 240              | 
+**Table 01 :**      Data with manual segmentations
+| Dataset               | Sequence         |Category         | Region           | In-plane res.    | 
+|-------------------------|------------------|----------------|-------------------------|--------------------------|
+| [marseille-t2s-template](https://doi.org/10.17605/OSF.IO/YMRGK) | 3T T2star      | HC               | cervical, torax, lumbar | 0.47x0.47               | 
+| [gmseg-challenge-2016](http://niftyweb.cs.ucl.ac.uk/program.php?p=CHALLENGE)   | 3T T2star        |HC               | cervical           | 0.6×0.6         | 
+| inspired               | 3T T2star         | HC DCM SCI       | cervical             | 0.5×0.5       | 
+| lumbar-vanderbilt      | 3T T2star       | HC               | lumbar                 | 0.3×0.3           | 
+| sct-testing-large      | 3T T2star        | HC MS DCM   | cervical sup. and inf.  (2 runs)  | 0.5×0.5         | 
+| sct-testing-large     | 3T MTon_MTR     | HC MS DCM   | cervical sup. and inf. (2 runs)  | 0.9×0.9       | 
+| dcm-brno               | 3T T1w ax        | HC               | cervical                   | 0.35×0.35             | 
+| hc-ucsf-psir           | 3T PSIR ax         | HC               | c3                         | 0.8x0.8                 | 
+| marseille-7T-T2star    | 7T T2star        |  HC MS ALS        | cervical       | 0.18x0.18  0.22x0.22 | 
+| marseille-7T-MP2RAGE     | 7T UNIT1   | HC MS ALS AMS    | cervical sup. and inf.  (2 runs)   | 0.3x0.3       |    
+| marseille-7T-MP2RAGE     | 7T T1map       | HC MS ALS AMS    | cervical sup. and inf. (2 runs)    | 0.3x0.3           |  
 
-3. Training 
+**Table 02 :**      Data without manual segmentations
 
-TODO:
+# 3. Preprocessing
+For all contrasts 
+- Reorientation to RPI
+
+# 4. Train GM model
+## 4.1 Setting up the environment and installation 
+1. 
+2. 
+
+## 4.2 Convertion of BIDS data to nnUnetV2 
+
+## 4.3 Training 
+
+## 4.4 Running inference
+
+## 4.5. Compute 2D segmentation metrics
+
+
