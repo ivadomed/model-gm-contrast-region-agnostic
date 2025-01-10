@@ -5,7 +5,7 @@ Repository for contrast and region agnostic spinal cord Gray Matter (GM) segment
 This repo contains the code for data preprocessing, training and running inferences mainly based on [Spinal Cord Toolbox](https://spinalcordtoolbox.com/stable/index.html) and [nnUnet](https://github.com/MIC-DKFZ/nnUNet).
 
 
-![GMseg](https://github.com/ivadomed/model-gm-contrast-region-agnostic/assets/77469192/f5625a0d-396d-4276-b55e-f4f198214719)
+![GMseg](https://github.com/user-attachments/assets/f53ca06b-7527-40b9-aacc-e645d7079fdc)
 
 
 # 1. Main Dependencies
