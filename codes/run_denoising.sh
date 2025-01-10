@@ -24,7 +24,7 @@ for subject in "${subjects[@]}"; do
 
     # Step 1: Apply denoising
     echo "Running denoising for $subject..."
-    "../btkNLMDenoising4DImage" -i "$input_image" -o "$denoised_image" -b 5
+    "../btkDenoising" -i "$input_image" -o "$denoised_image" -b 5     # From https://pmc.ncbi.nlm.nih.gov/articles/PMC3508300/
     if [[ $? -ne 0 ]]; then
         echo "Error: Denoising failed for $subject"
         continue
