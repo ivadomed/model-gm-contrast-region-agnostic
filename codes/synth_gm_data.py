@@ -31,7 +31,8 @@ def main():
     # Load the soft mask and input image
     soft_mask_data = nib.load(args.softmask)
     soft_mask = np.array(soft_mask_data.get_fdata())
-
+    soft_mask = np.where(soft_mask >= 0.8, 1, soft_mask)
+    
     input_image_data = nib.load(args.input)
     input_image = np.array(input_image_data.get_fdata())
 

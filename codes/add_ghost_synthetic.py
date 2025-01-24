@@ -20,7 +20,7 @@ def apply_random_ghosting(input_path, output_path, num_ghosts, axes):
         num_ghosts=num_ghosts,  # Number of ghosting lines
         axes=axes,              # Axes along which ghosting occurs
         restore=True,           # Restore the original image's intensity after ghosting
-        intensity=1.5,          # Intensity of the ghosting effect
+        intensity=(0.4, 0.7),   # Intensity of the ghosting effect
     )
     
     # Apply the transformation to the image

@@ -35,7 +35,7 @@ for image in "$IMAGE_DIR"*; do
     fi
 
     # Generate a random number for the ghosting effect
-    num_ghosts=$(shuf -i 0-10 -n 1)
+    num_ghosts=$(shuf -i 0-8 -n 1)
 
     # Run the Python script
     echo "Processing: $input_file and $output_file with num_ghosts=$num_ghosts"
