@@ -5,7 +5,8 @@ Repository for contrast and region agnostic spinal cord Gray Matter (GM) segment
 This repo contains the code for data preprocessing, training and running inferences mainly based on [Spinal Cord Toolbox](https://spinalcordtoolbox.com/stable/index.html) and [nnUnet](https://github.com/MIC-DKFZ/nnUNet).
 
 
-![GMseg_II](https://github.com/user-attachments/assets/5ff940d7-5726-4492-ad06-e8bce0432420)
+![GMseg_II](https://github.com/user-attachments/assets/e47e745d-4917-4064-9486-9958149e3514)
+
 
 
 # 1. Main Dependencies
@@ -34,6 +35,7 @@ This repo contains the code for data preprocessing, training and running inferen
 # 3. Preprocessing
 For all contrasts 
 - Reorientation to RPI
+- Crop the images around the GM mask, keeping all the information in the axial plane. 
 
 # 4. Train GM model
 ## 4.1 Setting up the environment and installation 
@@ -79,8 +81,10 @@ nnUNetv2_train -tr nnUNetTrainer_500epochs 801 2d 2 --npz -p nnUNetResEncUNetLPl
 nnUNetv2_predict -d Dataset801_gm-contrast-agnostic -i ~/imagesTs/ -o ~/test_801 -f  2 -tr nnUNetTrainer_500epochs -c 2d -p nnUNetResEncUNetLPlans
 ```
 2. Using sct_deepseg (SCT development)
-SCT commit:  
 
+branch : `nlm/add_gm_contrast_agnostic_model`
+
+SCT commit : `311307e24ae4f9bebd98574569294ab93f45ebd3` 
 ```
 sct_deepseg -i IMAGE.nii.gz -o IMAGE_gm_seg.nii.gz -task seg_gm_contrast_agnostic
 ```
