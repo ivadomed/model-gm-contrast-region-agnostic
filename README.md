@@ -27,10 +27,13 @@ This repo contains the code for data preprocessing, training and running inferen
 | sct-testing-large      | 3T T2star        | HC MS DCM   | cervical sup. and inf.  (2 runs)  | 0.5×0.5         | 
 | sct-testing-large     | 3T MTon_MTR     | HC MS DCM   | cervical sup. and inf. (2 runs)  | 0.9×0.9       | 
 | dcm-brno               | 3T T1w ax        | HC               | cervical                   | 0.35×0.35             | 
-| hc-ucsf-psir           | 3T PSIR ax         | HC               | c3                         | 0.8x0.8                 | 
+| hc-ucsf-psir           | 3T PSIR ax         | HC               | C3                         | 0.8x0.8                 | 
 | marseille-7T-T2star    | 7T T2star        |  HC MS ALS        | cervical       | 0.18x0.18  0.22x0.22 | 
 | marseille-7T-MP2RAGE     | 7T UNIT1   | HC MS ALS AMS    | cervical sup. and inf.  (2 runs)   | 0.3x0.3       |    
 | marseille-7T-MP2RAGE     | 7T T1map       | HC MS ALS AMS    | cervical sup. and inf. (2 runs)    | 0.3x0.3           |  
+| ms-barcelona-psir      | 3T PSIR ax      | HC MS        | C3                  | 0.78×0.78           | 
+| hc-lumbar-zurich      | 3T T2star       | HC               | lumbar                 | 0.5×0.5           | 
+| als-basel-ramira      | 3T rAMIRA       | HC ALS PPS SMA       | cervical and lumbar                 | 0.5×0.5           | 
 
 # 3. Preprocessing
 For all contrasts 
@@ -75,20 +78,18 @@ nnUNetv2_train -tr nnUNetTrainer_500epochs 801 2d 2 --npz -p nnUNetResEncUNetLPl
 
 
 ## 4.4 Running inference
-1. For datasets in a nnUnet format run:
+
+1. Using `sct_deepseg` 
+
+```
+sct_deepseg graymatter -i IMAGE.nii.gz -o IMAGE_gm_seg.nii.gz 
+```
+
+2. For datasets in a nnUnet format:
 
 ```
 nnUNetv2_predict -d Dataset801_gm-contrast-agnostic -i ~/imagesTs/ -o ~/test_801 -f  2 -tr nnUNetTrainer_500epochs -c 2d -p nnUNetResEncUNetLPlans
 ```
-2. Using sct_deepseg (SCT development)
-
-branch : `nlm/add_gm_contrast_agnostic_model`
-
-SCT commit : `311307e24ae4f9bebd98574569294ab93f45ebd3` 
-```
-sct_deepseg -i IMAGE.nii.gz -o IMAGE_gm_seg.nii.gz -task seg_gm_contrast_agnostic
-```
-
 
 ## 4.5. Compute segmentation metrics
 As we are evaluating the GM segmentation in 2D images, it is convenient to evaluate the images independently in each 2D slice, for which we can use Dice Score and Haussdorf Distance metrics using the following script:
@@ -105,6 +106,8 @@ python codes/calculate_2d_metrics.py -gt sub-01_GT_seg.nii.gz -inf sub-01_infere
 
 
 # Acknowledgments
+- David Gergely and Gupta Sarvagya (Balgrist University Hospital, University of Zurich, Zurich, Switzerland)
+- Regina Schlaeger (UniversityHospital Basel and University of Basel,Basel, Switzerland)
 - Tomas Horak and Josef Bednarik (Department of Neurology, University Hospital Brno, Brno, Czechia)
 - Nico Papinutto (Department of Neurology, University of California, San Francisco, CA, USA)
 - Deborah Pareto, Jaume Sastre-Garriga and Alex Rovira (Section of Neuroradiology and Magnetic Resonance Unit, Department of Radiology, Hospital Universitari Vall d'Hebron, Universitat Autònoma de Barcelona, Barcelona, Spain)
