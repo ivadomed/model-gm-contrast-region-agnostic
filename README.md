@@ -16,29 +16,45 @@ This repo contains the code for data preprocessing, training and running inferen
 - Python 3.10
 
 # 2. Dataset Summary
+
+<details>
+  <summary> Centers/datasets/sites detail: </summary>
    
 **Table 01 :**      Data with manual segmentations
 | Dataset               | Sequence         |Category         | Region           | In-plane res.    | 
 |-------------------------|------------------|----------------|-------------------------|--------------------------|
-| [marseille-t2s-template](https://doi.org/10.17605/OSF.IO/YMRGK) | 3T T2star      | HC               | cervical, torax, lumbar | 0.47x0.47               | 
-| [gmseg-challenge-2016](http://niftyweb.cs.ucl.ac.uk/program.php?p=CHALLENGE)   | 3T T2star        |HC               | cervical           | 0.6×0.6         | 
-| inspired               | 3T T2star         | HC DCM SCI       | cervical             | 0.5×0.5       | 
-| lumbar-vanderbilt      | 3T T2star       | HC               | lumbar                 | 0.3×0.3           | 
-| sct-testing-large      | 3T T2star        | HC MS DCM   | cervical sup. and inf.  (2 runs)  | 0.5×0.5         | 
-| sct-testing-large     | 3T MTon_MTR     | HC MS DCM   | cervical sup. and inf. (2 runs)  | 0.9×0.9       | 
+| [marseille-t2s-template](https://doi.org/10.17605/OSF.IO/YMRGK) | 3T T2starw      | HC               | cervical, torax, lumbar | 0.47x0.47               | 
+| [gmseg-challenge-2016](http://niftyweb.cs.ucl.ac.uk/program.php?p=CHALLENGE)   | 3T T2starw        |HC               | cervical           | 0.6×0.6         | 
+| inspired               | 3T T2starw         | HC DCM SCI       | cervical             | 0.5×0.5       | 
+| lumbar-vanderbilt      | 3T T2starw       | HC               | lumbar                 | 0.3×0.3           | 
+| sct-testing-large      | 3T T2starw        | HC MS DCM   | cervical sup. and inf.  (2 runs)  | 0.5×0.5         | 
+| sct-testing-large     | 3T MTR     | HC MS DCM   | cervical sup. and inf. (2 runs)  | 0.9×0.9       | 
 | dcm-brno               | 3T T1w ax        | HC               | cervical                   | 0.35×0.35             | 
 | hc-ucsf-psir           | 3T PSIR ax         | HC               | C3                         | 0.8x0.8                 | 
-| marseille-7T-T2star    | 7T T2star        |  HC MS ALS        | cervical       | 0.18x0.18  0.22x0.22 | 
+| marseille-7T-T2star    | 7T T2starw        |  HC MS ALS        | cervical       | 0.18x0.18  0.22x0.22 | 
 | marseille-7T-MP2RAGE     | 7T UNIT1   | HC MS ALS AMS    | cervical sup. and inf.  (2 runs)   | 0.3x0.3       |    
 | marseille-7T-MP2RAGE     | 7T T1map       | HC MS ALS AMS    | cervical sup. and inf. (2 runs)    | 0.3x0.3           |  
 | ms-barcelona-psir      | 3T PSIR ax      | HC MS        | C3                  | 0.78×0.78           | 
-| hc-lumbar-zurich      | 3T T2star       | HC               | lumbar                 | 0.5×0.5           | 
+| hc-lumbar-zurich      | 3T T2starw       | HC               | lumbar                 | 0.5×0.5           | 
 | als-basel-ramira      | 3T rAMIRA       | HC ALS PPS SMA       | cervical and lumbar                 | 0.5×0.5           | 
+| umass-ms-ge-pioneer3      | 3T PDw       | HC               | cervical            | 0.37×0.37           | 
+| umass-siemens-espree1.5      | 1.5T PDw       | HC               | cervica          | 0.39×0.39           | 
+| ms-karolinska-2020      | 3T T2star       | MS               | cervical         | 0.35×0.35           | 
+| ms-basel-2020      | 3T T2star       | MS           | cervical          | 0.35×0.35           | 
+| levin-stroke      | 3T T2star       | Stroke        | cervical                 | 0.5×0.5           | 
+| philadelphia-pediatric   | 3T T2star       | Pediatric       | cervical                 | 0.5×0.5           | 
+| vanderbilt-7t-swi      | 7T T2star       | HC MS         | cervical                 | 0.29×0.29      | 
+| vanderbilt-7t-swi      | 7T QSM       | HC MS         | cervical                 | 0.29×0.29      | 
+| vanderbilt-7t-swi      | 7T SWI       | HC MS         | cervical                 | 0.29×0.29      | 
+
+</details>
+
 
 # 3. Preprocessing
 For all contrasts 
 - Reorientation to RPI
-- Crop the images around the GM mask, keeping all the information in the axial plane. 
+- Crop the images around the GM mask, keeping all the information in the axial plane.
+- Reslice the images to 0.3x0.3 in the axial plane
 
 # 4. Train GM model
 ## 4.1 Setting up the environment and installation 
@@ -98,7 +114,8 @@ As we are evaluating the GM segmentation in 2D images, it is convenient to evalu
 python codes/calculate_2d_metrics.py -gt sub-01_GT_seg.nii.gz -inf sub-01_inference_seg.nii.gz sub-01_inference_seg2.nii.gz -o sub-01.csv
 ```
 
-# Open datasets 
+
+## Open datasets 
 1. `marseille-t2s-template` : 
         Callot V., Laines-Medina N., Taso M., & Fradet L. (2022). In Vivo Human Spinal Cord MRI data – From cervical to thoraco-lumbar levels. DOI https://doi.org/10.17605/OSF.IO/YMRGK 
 2. `gmseg-challenge-2016` : 
@@ -106,6 +123,7 @@ python codes/calculate_2d_metrics.py -gt sub-01_GT_seg.nii.gz -inf sub-01_infere
 
 
 # Acknowledgments
+
 - David Gergely and Gupta Sarvagya (Balgrist University Hospital, University of Zurich, Zurich, Switzerland)
 - Regina Schlaeger (UniversityHospital Basel and University of Basel,Basel, Switzerland)
 - Tomas Horak and Josef Bednarik (Department of Neurology, University Hospital Brno, Brno, Czechia)
