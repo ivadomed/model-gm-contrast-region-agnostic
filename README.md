@@ -20,7 +20,7 @@ This repo contains the code for data preprocessing, training and running inferen
 <details>
   <summary> Centers/datasets/sites detail: </summary>
    
-**Table 01 :**      Data with manual segmentations
+**Table 01 :**    Training dataset
 | Dataset               | Sequence         |Category         | Region           | In-plane res.    | 
 |-------------------------|------------------|----------------|-------------------------|--------------------------|
 | [marseille-t2s-template](https://doi.org/10.17605/OSF.IO/YMRGK) | 3T T2starw      | HC               | cervical, torax, lumbar | 0.47x0.47               | 
