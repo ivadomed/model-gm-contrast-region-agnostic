@@ -77,11 +77,11 @@ All datasets must be in a BIDS format, and then converted to an nnUnet format wi
 python codes/convert_bids_to_nnUNetV2.py --path-data ~/DATASET_BIDS   --path-out  ~/nnUNet_raw/ --contrast T2star --label-suffix label-GM_seg --dataset-name gm-contrast-agnostic --dataset-number 801 --seed 99 --split 0.8 0.2 
 ```
 ## 4.3 Training 
-1. Plan and preprocess using Residual Encoder Presets (see: [resenc_presets.md](https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/resenc_presets.md))
+1. Plan and preprocessing
 
 To extract specific dataset properties, such as image size, voxel spacing, intensity information, etc. that will be used by nnUnet to design the U-Net configurations with the ecoder recidual econder plans, use: 
 ```
-nnUNetv2_plan_and_preprocess -d 801 -pl nnUNetPlannerResEncL
+nnUNetv2_plan_and_preprocess -d 820 --verify_dataset_integrity
 ```
 2. Train
 
@@ -89,7 +89,7 @@ Since the acquisition in several subjects was of 2D axial images perpendicular t
 
 To train a 2D model, with  Residual Encoder Presets L use : 
 ```
-nnUNetv2_train -tr nnUNetTrainer_500epochs 801 2d 2 --npz -p nnUNetResEncUNetLPlans
+nnUNetv2_train 820 2d 2 --npz 
 ```
 
 
@@ -104,7 +104,7 @@ sct_deepseg graymatter -i IMAGE.nii.gz -o IMAGE_gm_seg.nii.gz
 2. For datasets in a nnUnet format:
 
 ```
-nnUNetv2_predict -d Dataset801_gm-contrast-agnostic -i ~/imagesTs/ -o ~/test_801 -f  2 -tr nnUNetTrainer_500epochs -c 2d -p nnUNetResEncUNetLPlans
+nnUNetv2_predict -d Dataset820_gm-seg  -i ~/imagesTs/ -o ~/test_820 -f  2 -c 2d
 ```
 
 ## 4.5. Compute segmentation metrics
