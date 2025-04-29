@@ -18,7 +18,7 @@ This repo contains the code for data preprocessing, training and running inferen
   <summary> Centers/datasets/sites detail: </summary>
    
 **Table 01 :**    Training dataset
-| Dataset               | Sequence         |Category         | Region           | In-plane res.    | 
+| Dataset               | Contrast         |Category         | Region           | In-plane res.    | 
 |-------------------------|------------------|----------------|-------------------------|--------------------------|
 | [marseille-t2s-template](https://doi.org/10.17605/OSF.IO/YMRGK) | 3T T2starw      | HC               | cervical, torax, lumbar | 0.47x0.47               | 
 | [gmseg-challenge-2016](http://niftyweb.cs.ucl.ac.uk/program.php?p=CHALLENGE)   | 3T T2starw        |HC               | cervical           | 0.6×0.6         | 
@@ -35,7 +35,7 @@ This repo contains the code for data preprocessing, training and running inferen
 | hc-lumbar-zurich      | 3T T2starw       | HC               | lumbar                 | 0.5×0.5           | 
 | als-basel-ramira      | 3T rAMIRA       | HC ALS PPS SMA       | cervical and lumbar                 | 0.5×0.5           | 
 | umass-ms-ge-pioneer3      | 3T PDw       | HC               | cervical            | 0.37×0.37           | 
-| umass-siemens-espree1.5      | 1.5T PDw       | HC               | cervica          | 0.39×0.39           | 
+| umass-siemens-espree1.5      | 1.5T PDw       | HC               | cervical          | 0.39×0.39           | 
 | ms-karolinska-2020      | 3T T2star       | MS               | cervical         | 0.35×0.35           | 
 | ms-basel-2020      | 3T T2star       | MS           | cervical          | 0.35×0.35           | 
 | levin-stroke      | 3T T2star       | Stroke        | cervical                 | 0.5×0.5           | 
