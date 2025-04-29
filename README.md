@@ -4,14 +4,11 @@ Repository for contrast and region agnostic spinal cord Gray Matter (GM) segment
 
 This repo contains the code for data preprocessing, training and running inferences mainly based on [Spinal Cord Toolbox](https://spinalcordtoolbox.com/stable/index.html) and [nnUnet](https://github.com/MIC-DKFZ/nnUNet).
 
-
 ![GMseg_II](https://github.com/user-attachments/assets/e47e745d-4917-4064-9486-9958149e3514)
-
-
 
 # 1. Main Dependencies
 
-- [![SCT](https://img.shields.io/badge/SCT-6.5-green)](https://github.com/spinalcordtoolbox/spinalcordtoolbox/releases/tag/6.5)
+- [![SCT](https://img.shields.io/badge/SCT-7.0-green)](https://github.com/spinalcordtoolbox/spinalcordtoolbox/releases/tag/7.0)
 
 - Python 3.10
 
@@ -98,6 +95,10 @@ nnUNetv2_train 820 2d 2 --npz
 1. Using `sct_deepseg` 
 
 ```
+sct_deepseg graymatter -install
+```
+
+```
 sct_deepseg graymatter -i IMAGE.nii.gz -o IMAGE_gm_seg.nii.gz 
 ```
 
@@ -114,21 +115,27 @@ As we are evaluating the GM segmentation in 2D images, it is convenient to evalu
 python codes/calculate_2d_metrics.py -gt sub-01_GT_seg.nii.gz -inf sub-01_inference_seg.nii.gz sub-01_inference_seg2.nii.gz -o sub-01.csv
 ```
 
+# Acknowledgments
 
-## Open datasets 
+## Open datasets :
 1. `marseille-t2s-template` : 
         Callot V., Laines-Medina N., Taso M., & Fradet L. (2022). In Vivo Human Spinal Cord MRI data – From cervical to thoraco-lumbar levels. DOI https://doi.org/10.17605/OSF.IO/YMRGK 
 2. `gmseg-challenge-2016` : 
         Prados F. et al. (2017). Spinal cord grey matter segmentation challenge. NeuroImage, 152, 312–329. DOI https://doi.org/10.1016/j.neuroimage.2017.03.010 
 
-
-# Acknowledgments
-
-- David Gergely and Gupta Sarvagya (Balgrist University Hospital, University of Zurich, Zurich, Switzerland)
-- Regina Schlaeger (UniversityHospital Basel and University of Basel,Basel, Switzerland)
-- Tomas Horak and Josef Bednarik (Department of Neurology, University Hospital Brno, Brno, Czechia)
+## Collaborators :
+- Virginie Callot (Center for Magnetic Resonance in Biology and Medicine, CRMBM-CEMEREM, UMR 7339, CNRS, Aix-Marseille University, Marseille, France)
+- David Gergely and Gupta Sarvagya (Spinal Cord Injury Center, Balgrist University Hospital, University of Zurich, Zurich, Switzerland)
+- Kristin P. O'Grady (Vanderbilt University Institute of Imaging Science, Vanderbilt University Medical Center, Nashville, United States)
+- Regina Schlaeger (Department of Neurology, University Hospital Basel and University of Basel, Basel, Switzerland)
+- Josef Bednarik, Tomas Horak and Petr Kudlicka (Department of Neurology, University Hospital Brno, Brno, Czechia)
 - Nico Papinutto (Department of Neurology, University of California, San Francisco, CA, USA)
 - Deborah Pareto, Jaume Sastre-Garriga and Alex Rovira (Section of Neuroradiology and Magnetic Resonance Unit, Department of Radiology, Hospital Universitari Vall d'Hebron, Universitat Autònoma de Barcelona, Barcelona, Spain)
 - Claudia Wheeler Kingshott (NMR Research Unit, University Department of Clinical Neurology, Institute of Neurology, University College London, Queen Square, London, United Kingdom)
-- Kristin P. O'Grady (Vanderbilt University Institute of Imaging Science, Vanderbilt University Medical Center, Nashville, United States)
-- Virginie Callot (Center for Magnetic Resonance in Biology and Medicine, CRMBM-CEMEREM, UMR 7339, CNRS, Aix-Marseille University, Marseille, France)
+- Seth Smith (Vanderbilt University Institute of Imaging Science, Vanderbilt University Medical Center, Nashville, TN 37232 USA)
+- Charidimos Tsagkas (Translational Neuroradiology Section, National Institutes of Health, Bethesda, USA)
+- Cristina Granziera (Neurologic Clinic and Policlinic, University Hospital Basel and University of Basel, Basel, Switzerland)
+- Feroze Mohamed (Department of Radiology, Jefferson Integrated Magnetic Resonance Imaging Center, Thomas Jefferson University, Philadelphia, Pennsylvania, USA)
+- Mindy Levin (School of Physical and Occupational Therapy, Faculty of Medicine and Health Sciences, McGill University, Montreal, Qc, Canada)
+- Tobias Granberg (Department of Clinical Neuroscience, Karolinska Institutet, Stockholm, Sweden)
+- Christopher Hemond (Laboratory for Neuroimaging Research, Partners Multiple Sclerosis Center, Ann Romney Center for Neurologic Diseases, Departments of Neurology and Radiology, Brigham and Women's Hospital, Harvard Medical School, Boston, Massachusetts 02115, USA)
